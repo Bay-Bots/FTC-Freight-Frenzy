@@ -27,6 +27,7 @@ public class Robot {
         // waitForStart();
     }
 
+    // adjust the motor power for driving on controller
     public void setDriverMotorPower(float FRightPower, float FLeftPower, float BRightPower, float BLeftPower) {
         motorFrontRight.setPower(FRightPower);
         motorFrontLeft.setPower(FLeftPower);
