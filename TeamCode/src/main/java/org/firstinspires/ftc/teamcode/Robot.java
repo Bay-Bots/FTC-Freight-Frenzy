@@ -1,12 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
+//import com.qualcomm.robotcore.hardware.Servo;
 
 public class Robot {
     private DcMotor motorFrontRight;
@@ -22,16 +18,13 @@ public class Robot {
         // initialization is complete
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-
-        // in autonomous call as well
-        // waitForStart();
     }
 
     // adjust the motor power for driving on controller
     public void setDriverMotorPower(float FRightPower, float FLeftPower, float BRightPower, float BLeftPower) {
-        motorFrontRight.setPower(FRightPower);
-        motorFrontLeft.setPower(FLeftPower);
-        motorBackLeft.setPower(BLeftPower);
-        motorBackRight.setPower(BRightPower);
+        this.motorFrontRight.setPower(FRightPower);
+        this.motorFrontLeft.setPower(FLeftPower);
+        this.motorBackLeft.setPower(BLeftPower);
+        this.motorBackRight.setPower(BRightPower);
     }
 }
