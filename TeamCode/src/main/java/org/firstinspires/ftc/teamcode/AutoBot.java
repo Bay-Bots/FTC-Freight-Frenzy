@@ -1,4 +1,6 @@
 package org.firstinspires.ftc.teamcode;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -10,15 +12,40 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  * /_/  |_\____/ /_/  \____/_/ |_/\____/_/  /_/\____/\____//____/   *
  *******************************************************************/
 
-@Autonomous(name="Autobot")
+@Autonomous(name="AutoBot")
 public class AutoBot extends LinearOpMode {
     Robot Auto;
+    InitCV AutoCVCMD;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Auto = new Robot();
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        DuckDetector duckVision = new DuckDetector();
+        AutoCVCMD = new InitCV();
+        AutoCVCMD.init(duckVision, cameraMonitorViewId);
+//        Auto = new Robot();
         waitForStart();
-        Auto.setDriverMotorPower(-5, 0, 0, 5);
-        sleep(500);
+
+//        telemetry.addData("Position: ", duckVision.getLoc());
+
+        switch (duckVision.getLoc()) {
+            case LEFT:
+//                ...
+                break;
+
+            case RIGHT:
+//                ...
+                break;
+
+            case NF:
+//                ...
+                break;
+        }
+
+        AutoCVCMD.stopStream();
+
+
+//        Auto.setDriverMotorPower(-5, 0, 0, 5);
+//        sleep(500);
     }
 }
