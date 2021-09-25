@@ -13,6 +13,7 @@ public class InitCV {
     public void init(DuckDetector detector, int id) {
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, id);
         phoneCam.setPipeline(detector);
+        phoneCam.setFlashlightEnabled(true);
         phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
             public void onOpened() {
