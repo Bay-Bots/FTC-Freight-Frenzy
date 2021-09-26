@@ -16,20 +16,26 @@ public class DriverControl extends OpMode {
 
     @Override
     public void loop() {
-        float gamepad1LeftY = -gamepad1.left_stick_y;
-        float gamepad1LeftX = gamepad1.left_stick_x;
-        float gamepad1RightX = gamepad1.right_stick_x;
+        double speed = gamepad1.right_trigger - gamepad1.left_trigger;
+        double turn = gamepad1.left_stick_x;
+        double armSpeed = gamepad1.right_stick_x;
 
-        float FrontRight = -gamepad1LeftY + gamepad1LeftX + gamepad1RightX;
-        float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
-        float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
-        float BackRight = -gamepad1LeftY - gamepad1LeftX + gamepad1RightX;
+//        float gamepad1LeftY = -gamepad1.left_stick_y;
+//        float gamepad1LeftX = gamepad1.left_stick_x;
+//        float gamepad1RightX = gamepad1.right_stick_x;
+//
+//        float FrontRight = -gamepad1LeftY + gamepad1LeftX + gamepad1RightX;
+//        float FrontLeft = -gamepad1LeftY - gamepad1LeftX - gamepad1RightX;
+//        float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
+//        float BackRight = -gamepad1LeftY - gamepad1LeftX + gamepad1RightX;
+//
+//        FrontRight = Range.clip(FrontRight, -1, 1);
+//        FrontLeft = Range.clip(FrontLeft, -1, 1);
+//        BackRight = Range.clip(BackRight, -1, 1);
+//        BackLeft = Range.clip(BackLeft, -1, 1);
 
-        FrontRight = Range.clip(FrontRight, -1, 1);
-        FrontLeft = Range.clip(FrontLeft, -1, 1);
-        BackRight = Range.clip(BackRight, -1, 1);
-        BackLeft = Range.clip(BackLeft, -1, 1);
+        Driver.setDriverMotorPower(speed - turn, speed + turn, speed - turn, speed + turn);
+//        Driver.setArmSpeed(armSpeed);
 
-        Driver.setDriverMotorPower(FrontRight, FrontLeft, BackRight, BackLeft);
     }
 }
