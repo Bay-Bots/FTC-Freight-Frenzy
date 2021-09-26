@@ -2,8 +2,13 @@ package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import com.qualcomm.robotcore.hardware.DcMotor;
+//import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public class Robot {
+//    private DcMotorEx motorFrontRight;
+//    private DcMotorEx motorFrontLeft;
+//    private DcMotorEx motorBackRight;
+//    private DcMotorEx motorBackLeft;
     private DcMotor motorFrontRight;
     private DcMotor motorFrontLeft;
     private DcMotor motorBackRight;
@@ -11,6 +16,11 @@ public class Robot {
 //    private DcMotor arm;
 
     public Robot() {
+//        Extended dcmotor
+//        motorFrontRight = (DcMotorEx) hardwareMap.dcMotor.get("motor front right");
+//        motorFrontLeft = (DcMotorEx) hardwareMap.dcMotor.get("motor front left");
+//        motorBackLeft = (DcMotorEx) hardwareMap.dcMotor.get("motor back left");
+//        motorBackRight = (DcMotorEx) hardwareMap.dcMotor.get("motor back right");
         motorFrontRight = hardwareMap.dcMotor.get("motor front right");
         motorFrontLeft = hardwareMap.dcMotor.get("motor front left");
         motorBackLeft = hardwareMap.dcMotor.get("motor back left");
