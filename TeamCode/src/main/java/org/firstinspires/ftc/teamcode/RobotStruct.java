@@ -1,37 +1,38 @@
 package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 //import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-public class Robot {
-//    private DcMotorEx motorFrontRight;
-//    private DcMotorEx motorFrontLeft;
-//    private DcMotorEx motorBackRight;
-//    private DcMotorEx motorBackLeft;
-    private DcMotor motorFrontRight;
-    private DcMotor motorFrontLeft;
-    private DcMotor motorBackRight;
-    private DcMotor motorBackLeft;
+public class RobotStruct extends OpMode{
+//    private DcMotorEx arm;
+    DcMotor motorFrontRight;
+    DcMotor motorFrontLeft;
+    DcMotor motorBackRight;
+    DcMotor motorBackLeft;
 //    private DcMotor arm;
 
-    public Robot() {
-//        Extended dcmotor
-//        motorFrontRight = (DcMotorEx) hardwareMap.dcMotor.get("motor front right");
-//        motorFrontLeft = (DcMotorEx) hardwareMap.dcMotor.get("motor front left");
-//        motorBackLeft = (DcMotorEx) hardwareMap.dcMotor.get("motor back left");
-//        motorBackRight = (DcMotorEx) hardwareMap.dcMotor.get("motor back right");
+    @Override
+    public void init() {
         motorFrontRight = hardwareMap.dcMotor.get("motor front right");
         motorFrontLeft = hardwareMap.dcMotor.get("motor front left");
         motorBackLeft = hardwareMap.dcMotor.get("motor back left");
         motorBackRight = hardwareMap.dcMotor.get("motor back right");
+
+        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
 //        arm = hardwareMap.dcMotor.get("arm motor");
         // initialization is complete
         telemetry.addData("Status", "Initialized");
         telemetry.update();
     }
 
-    // adjust the motor power for driving on controller
+    @Override
+    public void loop() {
+
+    }
+
     public void setDriverMotorPower(double FRightPower, double FLeftPower, double BRightPower, double BLeftPower) {
         motorFrontRight.setPower(FRightPower);
         motorFrontLeft.setPower(FLeftPower);

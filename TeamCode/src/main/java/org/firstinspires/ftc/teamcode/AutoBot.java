@@ -14,7 +14,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 @Autonomous(name="AutoBot")
 public class AutoBot extends LinearOpMode {
-    Robot Auto;
     InitCV AutoCVCMD;
 
     @Override
@@ -23,7 +22,6 @@ public class AutoBot extends LinearOpMode {
         DuckDetector duckVision = new DuckDetector();
         AutoCVCMD = new InitCV();
         AutoCVCMD.init(duckVision, cameraMonitorViewId);
-//        Auto = new Robot();
         waitForStart();
 
 //        telemetry.addData("Position: ", duckVision.getLoc());
