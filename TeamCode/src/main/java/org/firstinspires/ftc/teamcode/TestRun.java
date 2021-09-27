@@ -18,8 +18,6 @@ public class TestRun extends OpMode
      */
     @Override
     public void init() {
-        telemetry.addData("Status", "Initialized");
-
         motorFrontRight = hardwareMap.dcMotor.get("motor front right");
         motorFrontLeft = hardwareMap.dcMotor.get("motor front left");
         motorBackLeft = hardwareMap.dcMotor.get("motor back left");

@@ -1,12 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 //import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-public class RobotStruct extends OpMode {
-//    private DcMotorEx arm;
+public class AutoRobotStruct extends LinearOpMode {
+    //    private DcMotorEx arm;
     DcMotor motorFrontRight;
     DcMotor motorFrontLeft;
     DcMotor motorBackRight;
@@ -14,7 +16,9 @@ public class RobotStruct extends OpMode {
 //    private DcMotorEx arm;
 
     @Override
-    public void init() {
+    public void runOpMode() throws InterruptedException {}
+
+    public void initRunner() throws InternalError {
         motorFrontRight = hardwareMap.dcMotor.get("motor front right");
         motorFrontLeft = hardwareMap.dcMotor.get("motor front left");
         motorBackLeft = hardwareMap.dcMotor.get("motor back left");
@@ -26,11 +30,6 @@ public class RobotStruct extends OpMode {
         // initialization is complete
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-    }
-
-    @Override
-    public void loop() {
-
     }
 
     public void setDriverMotorPower(double FRightPower, double FLeftPower, double BRightPower, double BLeftPower) {

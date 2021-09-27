@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  *******************************************************************/
 
 @Autonomous(name="AutoBot")
-public class AutoBot extends LinearOpMode {
+public class AutoBot extends AutoRobotStruct {
     InitCV AutoCVCMD;
 
     @Override
