@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 /*******************************************************************
  *     ___   __  ____________  _   ______  __  _______  __  _______ *
@@ -15,35 +12,45 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 @Autonomous(name="AutoBot")
 public class AutoBot extends AutoRobotStruct {
     InitCV AutoCVCMD;
+    DuckDetector duckVision = new DuckDetector();
 
     @Override
     public void runOpMode() throws InterruptedException {
+        initRunner();
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        DuckDetector duckVision = new DuckDetector();
         AutoCVCMD = new InitCV();
         AutoCVCMD.init(duckVision, cameraMonitorViewId);
+        sleep(10000);
+        detect();
         waitForStart();
-
-//        telemetry.addData("Position: ", duckVision.getLoc());
-
-        switch (duckVision.getLoc()) {
-            case LEFT:
-//                ...
-                break;
-
-            case RIGHT:
-//                ...
-                break;
-
-            case NF:
-//                ...
-                break;
-        }
 
         AutoCVCMD.stopStream();
 
-
 //        Auto.setDriverMotorPower(-5, 0, 0, 5);
 //        sleep(500);
+    }
+
+    public void detect(){
+        switch (duckVision.getLoc()) {
+            case LEFT:
+                telemetry.addData("Position: ", "LEFT");
+                telemetry.update();
+                break;
+
+            case RIGHT:
+                telemetry.addData("Position: ", "RIGHT");
+                telemetry.update();
+                break;
+
+            case MIDDLE:
+                telemetry.addData("Position: ", "MIDDlE");
+                telemetry.update();
+                break;
+
+            case NF:
+                telemetry.addData("Position: ", "NOT FOUND");
+                telemetry.update();
+                break;
+        }
     }
 }

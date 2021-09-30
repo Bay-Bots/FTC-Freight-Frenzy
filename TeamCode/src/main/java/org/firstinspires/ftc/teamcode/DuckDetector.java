@@ -25,18 +25,18 @@ public class DuckDetector extends OpenCvPipeline{
 
 //  320, 240
     static final Rect LEFT_MAT = new Rect(
-            new Point(60, 35),
-            new Point(100, 75)
+            new Point(70, 35),
+            new Point(90, 75)
     );
 
     static final Rect MID_MAT = new Rect(
-            new Point(120, 35),
-            new Point(180, 75)
+            new Point(110, 35),
+            new Point(170, 75)
     );
 
     static final Rect RIGHT_MAT = new Rect(
-            new Point(190, 35),
-            new Point(220, 75)
+            new Point(180, 35),
+            new Point(210, 75)
     );
 
     final static double PCT = 0.40;
@@ -103,7 +103,7 @@ public class DuckDetector extends OpenCvPipeline{
         return mat;
     }
 
-    public LOCATION getLoc() { return this.location; }
+    public LOCATION getLoc() { return location; }
 
     public double[] getLR() {
         return new double[]{Core.sumElems(LEFT).val[0], Core.sumElems(MID).val[0], Core.sumElems(RIGHT).val[0]};
