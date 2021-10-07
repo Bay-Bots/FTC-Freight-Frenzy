@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 public class AutoBot extends AutoRobotStruct {
     InitCV AutoCVCMD;
     DuckDetector duckVision = new DuckDetector();
+    String position;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -20,10 +21,13 @@ public class AutoBot extends AutoRobotStruct {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         AutoCVCMD = new InitCV();
         AutoCVCMD.init(duckVision, cameraMonitorViewId);
-        sleep(10000);
-        detect();
-        waitForStart();
 
+        while(!isStarted()){
+            detect();
+            position = duckVision.getLoc();
+        }
+
+        waitForStart();
         AutoCVCMD.stopStream();
 
 //        Auto.setDriverMotorPower(-5, 0, 0, 5);
@@ -31,26 +35,18 @@ public class AutoBot extends AutoRobotStruct {
     }
 
     public void detect(){
-        switch (duckVision.getLoc()) {
-            case LEFT:
-                telemetry.addData("Position: ", "LEFT");
-                telemetry.update();
-                break;
-
-            case RIGHT:
-                telemetry.addData("Position: ", "RIGHT");
-                telemetry.update();
-                break;
-
-            case MIDDLE:
-                telemetry.addData("Position: ", "MIDDlE");
-                telemetry.update();
-                break;
-
-            case NF:
-                telemetry.addData("Position: ", "NOT FOUND");
-                telemetry.update();
-                break;
+        if (position.equals("LEFT")) {
+            telemetry.addData("Position: ", "LEFT");
+            telemetry.update();
+        } else if (position.equals("RIGHT")) {
+            telemetry.addData("Position: ", "RIGHT");
+            telemetry.update();
+        } else if (position.equals("MIDDLE")) {
+            telemetry.addData("Position: ", "MIDDlE");
+            telemetry.update();
+        } else {
+            telemetry.addData("Position: ", "NOT FOUND");
+            telemetry.update();
         }
     }
 }

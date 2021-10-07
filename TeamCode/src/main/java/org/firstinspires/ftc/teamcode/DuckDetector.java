@@ -11,17 +11,11 @@ public class DuckDetector extends OpenCvPipeline{
     double LEFT_value;
     double RIGHT_value;
     double MID_value;
+    private String location;
 
     Mat mat = new Mat();
 
-    public enum LOCATION {
-        LEFT,
-        RIGHT,
-        MIDDLE,
-        NF
-    }
-
-    private LOCATION location;
+    private String[] LOCATION = {"LEFT", "RIGHT", "MIDDLE", "NOT FOUND"};
 
 //  320, 240
     static final Rect LEFT_MAT = new Rect(
@@ -82,13 +76,13 @@ public class DuckDetector extends OpenCvPipeline{
 //        need to see if all of the locations can be found in this image
 
         if (dl) {
-            location = LOCATION.LEFT;
+            location = LOCATION[0];
         } else if (dr) {
-            location = LOCATION.RIGHT;
+            location = LOCATION[1];
         } else if (dm) {
-            location = LOCATION.MIDDLE;
+            location = LOCATION[2];
         } else {
-            location = LOCATION.NF;
+            location = LOCATION[3];
         }
 
         Imgproc.cvtColor(mat, mat, Imgproc.COLOR_GRAY2RGB);
@@ -96,14 +90,14 @@ public class DuckDetector extends OpenCvPipeline{
         Scalar duckLocationFound = new Scalar(0, 255, 0);
         Scalar duckNotFound = new Scalar(255, 0, 0);
 
-        Imgproc.rectangle(mat, LEFT_MAT, location == LOCATION.LEFT ? duckLocationFound:duckNotFound);
-        Imgproc.rectangle(mat, MID_MAT, location == LOCATION.MIDDLE ? duckLocationFound:duckNotFound);
-        Imgproc.rectangle(mat, RIGHT_MAT, location == LOCATION.RIGHT ? duckLocationFound:duckNotFound);
+        Imgproc.rectangle(mat, LEFT_MAT, location == LOCATION[0] ? duckLocationFound:duckNotFound);
+        Imgproc.rectangle(mat, RIGHT_MAT, location == LOCATION[1] ? duckLocationFound:duckNotFound);
+        Imgproc.rectangle(mat, MID_MAT, location == LOCATION[2] ? duckLocationFound:duckNotFound);
 
         return mat;
     }
 
-    public LOCATION getLoc() { return location; }
+    public String getLoc() { return location; }
 
     public double[] getLR() {
         return new double[]{Core.sumElems(LEFT).val[0], Core.sumElems(MID).val[0], Core.sumElems(RIGHT).val[0]};
