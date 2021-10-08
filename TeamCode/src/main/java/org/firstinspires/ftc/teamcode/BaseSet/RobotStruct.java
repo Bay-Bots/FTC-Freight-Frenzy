@@ -42,9 +42,7 @@ public class RobotStruct extends OpMode {
         motorBackRight.setPower(BRightPower);
     }
 
-    public void setDuckDropperSpeed(double speed){
-        motorDuckDropper.setPower(speed);
-    }
+    public void setDuckDropperSpeed(double speed){ motorDuckDropper.setPower(speed); }
 
     public void setArmSpeed(double speed) {
         motorArm.setPower(speed);
