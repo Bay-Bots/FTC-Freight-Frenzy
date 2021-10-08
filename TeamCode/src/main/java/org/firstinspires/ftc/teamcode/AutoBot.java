@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import org.firstinspires.ftc.teamcode.BaseSet.AutoRobotStruct;
 
 /*******************************************************************
  *     ___   __  ____________  _   ______  __  _______  __  _______ *

@@ -1,11 +1,17 @@
 package org.firstinspires.ftc.teamcode;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
+
+// this is only being kept as a last resort code structure -- no need to change this file
+
+
+@Disabled
 @TeleOp(name="TestRunner")
-public class TestRun extends OpMode
+public class OldTest extends OpMode
 {
     // Declare OpMode members.
     DcMotor motorFrontRight;

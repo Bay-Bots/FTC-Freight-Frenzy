@@ -1,9 +1,11 @@
-package org.firstinspires.ftc.teamcode;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+package org.firstinspires.ftc.teamcode.BaseSet;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-public class AutoRobotStruct extends LinearOpMode {
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
+
+public class RobotStruct extends OpMode {
     DcMotor motorFrontRight;
     DcMotor motorFrontLeft;
     DcMotor motorBackRight;
@@ -11,22 +13,20 @@ public class AutoRobotStruct extends LinearOpMode {
     DcMotorEx motorArm;
 
     @Override
-    public void runOpMode() throws InterruptedException {
-        initRunner();
-    }
-
-    public void initRunner() throws InternalError {
+    public void init() {
         motorFrontRight = hardwareMap.get(DcMotor.class, "motor front right");
         motorFrontLeft = hardwareMap.get(DcMotor.class, "motor front left");
         motorBackLeft = hardwareMap.get(DcMotor.class, "motor back left");
         motorBackRight = hardwareMap.get(DcMotor.class, "motor back right");
         motorArm = hardwareMap.get(DcMotorEx.class, "motor arm");
 
-        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+    }
+
+    @Override
+    public void loop() {
+
     }
 
     public void setDriverMotorPower(double FRightPower, double FLeftPower, double BRightPower, double BLeftPower) {
@@ -38,5 +38,10 @@ public class AutoRobotStruct extends LinearOpMode {
 
     public void setArmSpeed(double speed) {
         motorArm.setPower(speed);
+    }
+
+    public void sendAmpReading() {
+        telemetry.addData("Arm Current: ", motorArm.getCurrent(CurrentUnit.AMPS));
+        telemetry.update();
     }
 }
