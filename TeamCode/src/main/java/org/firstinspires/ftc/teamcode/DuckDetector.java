@@ -17,7 +17,6 @@ public class DuckDetector extends OpenCvPipeline{
 
     private String[] LOCATION = {"LEFT", "RIGHT", "MIDDLE", "NOT FOUND"};
 
-//  320, 240
     static final Rect LEFT_MAT = new Rect(
             new Point(70, 35),
             new Point(90, 75)

@@ -1,15 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-//import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public class AutoRobotStruct extends LinearOpMode {
-    //    private DcMotorEx arm;
     DcMotor motorFrontRight;
     DcMotor motorFrontLeft;
     DcMotor motorBackRight;
     DcMotor motorBackLeft;
-//    private DcMotorEx arm;
+    DcMotorEx motorArm;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -17,14 +16,14 @@ public class AutoRobotStruct extends LinearOpMode {
     }
 
     public void initRunner() throws InternalError {
-//        motorFrontRight = hardwareMap.dcMotor.get("motor front right");
-//        motorFrontLeft = hardwareMap.dcMotor.get("motor front left");
-//        motorBackLeft = hardwareMap.dcMotor.get("motor back left");
-//        motorBackRight = hardwareMap.dcMotor.get("motor back right");
-//
-//        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
-//        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-//        arm = hardwareMap.dcMotor.get("arm motor");
+        motorFrontRight = hardwareMap.get(DcMotor.class, "motor front right");
+        motorFrontLeft = hardwareMap.get(DcMotor.class, "motor front left");
+        motorBackLeft = hardwareMap.get(DcMotor.class, "motor back left");
+        motorBackRight = hardwareMap.get(DcMotor.class, "motor back right");
+        motorArm = hardwareMap.get(DcMotorEx.class, "motor arm");
+
+        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
+        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -37,7 +36,7 @@ public class AutoRobotStruct extends LinearOpMode {
         motorBackRight.setPower(BRightPower);
     }
 
-//    public void setArmSpeed(double speed) {
-//        arm.setPower(speed);
-//    }
+    public void setArmSpeed(double speed) {
+        motorArm.setPower(speed);
+    }
 }

@@ -1,29 +1,25 @@
 package org.firstinspires.ftc.teamcode;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-//import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 
 public class RobotStruct extends OpMode {
-//    private DcMotorEx arm;
     DcMotor motorFrontRight;
     DcMotor motorFrontLeft;
     DcMotor motorBackRight;
     DcMotor motorBackLeft;
-//    private DcMotorEx arm;
+    DcMotorEx motorArm;
 
     @Override
     public void init() {
-        motorFrontRight = hardwareMap.dcMotor.get("motor front right");
-        motorFrontLeft = hardwareMap.dcMotor.get("motor front left");
-        motorBackLeft = hardwareMap.dcMotor.get("motor back left");
-        motorBackRight = hardwareMap.dcMotor.get("motor back right");
+        motorFrontRight = hardwareMap.get(DcMotor.class, "motor front right");
+        motorFrontLeft = hardwareMap.get(DcMotor.class, "motor front left");
+        motorBackLeft = hardwareMap.get(DcMotor.class, "motor back left");
+        motorBackRight = hardwareMap.get(DcMotor.class, "motor back right");
+        motorArm = hardwareMap.get(DcMotorEx.class, "motor arm");
 
-        motorBackRight.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.REVERSE);
-//        arm = hardwareMap.dcMotor.get("arm motor");
-        // initialization is complete
         telemetry.addData("Status", "Initialized");
         telemetry.update();
     }
@@ -40,7 +36,12 @@ public class RobotStruct extends OpMode {
         motorBackRight.setPower(BRightPower);
     }
 
-//    public void setArmSpeed(double speed) {
-//        arm.setPower(speed);
-//    }
+    public void setArmSpeed(double speed) {
+        motorArm.setPower(speed);
+    }
+
+    public void sendAmpReading() {
+        telemetry.addData("Arm Current: ", motorArm.getCurrent(CurrentUnit.AMPS));
+        telemetry.update();
+    }
 }
