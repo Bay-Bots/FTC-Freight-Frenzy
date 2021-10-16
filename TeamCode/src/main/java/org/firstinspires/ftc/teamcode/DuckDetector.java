@@ -11,28 +11,34 @@ public class DuckDetector extends OpenCvPipeline{
     double LEFT_value;
     double RIGHT_value;
     double MID_value;
-    private String location;
+    private String location = "";
 
     Mat mat = new Mat();
 
     private String[] LOCATION = {"LEFT", "RIGHT", "MIDDLE", "NOT FOUND"};
 
     static final Rect LEFT_MAT = new Rect(
-            new Point(70, 35),
-            new Point(90, 75)
+            15,
+            100,
+            50,
+            70
     );
 
     static final Rect MID_MAT = new Rect(
-            new Point(110, 35),
-            new Point(170, 75)
+            95,
+            100,
+            50,
+            70
     );
 
     static final Rect RIGHT_MAT = new Rect(
-            new Point(180, 35),
-            new Point(210, 75)
+            175,
+            100,
+            50,
+            70
     );
 
-    final static double PCT = 0.40;
+    final static double PCT = 0.20;
 
     Mat LEFT;
     Mat RIGHT;
@@ -44,8 +50,15 @@ public class DuckDetector extends OpenCvPipeline{
     public Mat processFrame(Mat input) {
         Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV);
 
-        final Scalar LOW_BOUND = new Scalar(23, 50, 70);
-        final Scalar UPPER_BOUND = new Scalar(32, 255, 255);
+//        final Scalar LOW_BOUND = new Scalar(252, 169, 3);
+//        final Scalar UPPER_BOUND = new Scalar(252, 194, 3);
+//        hsv values
+
+        double low[] = {17, 7, 70};
+        double high[] = {30, 255, 255};
+
+        final Scalar LOW_BOUND = new Scalar(low[0], low[1], low[2]);
+        final Scalar UPPER_BOUND = new Scalar(high[0], high[1], high[2]);
 
         Core.inRange(mat, LOW_BOUND, UPPER_BOUND, mat);
 

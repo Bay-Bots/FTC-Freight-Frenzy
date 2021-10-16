@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.BaseSet.AutoRobotStruct;
+import org.firstinspires.ftc.teamcode.Base.AutoRobotStruct;
 
 /*******************************************************************
  *     ___   __  ____________  _   ______  __  _______  __  _______ *
@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.BaseSet.AutoRobotStruct;
 public class AutoBot extends AutoRobotStruct {
     InitCV AutoCVCMD;
     DuckDetector duckVision = new DuckDetector();
-    String position;
+    String position = "NOT FOUND";
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -24,8 +24,8 @@ public class AutoBot extends AutoRobotStruct {
         AutoCVCMD.init(duckVision, cameraMonitorViewId);
 
         while(!isStarted()){
-            detect();
             position = duckVision.getLoc();
+            detect();
         }
 
         waitForStart();
@@ -43,7 +43,7 @@ public class AutoBot extends AutoRobotStruct {
             telemetry.addData("Position: ", "RIGHT");
             telemetry.update();
         } else if (position.equals("MIDDLE")) {
-            telemetry.addData("Position: ", "MIDDlE");
+            telemetry.addData("Position: ", "MIDDLE");
             telemetry.update();
         } else {
             telemetry.addData("Position: ", "NOT FOUND");
